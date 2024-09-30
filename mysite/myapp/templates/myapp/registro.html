@@ -65,13 +65,13 @@
             font-size: 16px;
         }
 
-        .registro {
+        .registro, .login {
             background-color: #f60;
             padding: 5px 10px;
             border-radius: 4px;
         }
 
-        .registro:hover {
+        .registro:hover, .login:hover {
             background-color: #e55;
         }
 
@@ -109,7 +109,7 @@
             padding: 10px;
         }
 
-        .menu-responsive .registro {
+        .menu-responsive .registro, .menu-responsive .login {
             margin: 10px auto;
         }
 
@@ -200,22 +200,24 @@
         </div>
         <nav class="menu">
             <ul>
-                    <li><a href={% url 'home' %}>Inicio</a></li>
-                    <li><a href={% url 'generos' %}>Géneros</a></li>
-                    <li><a href={% url 'estrenos' %}>Estrenos</a></li>
-                    <li><a href={% url 'clasicos' %}>Clásicos</a></li>
-                    <li><a href={% url 'contacto' %}>Contacto</a></li>
-                    <li><a href={% url 'registro' %} class="registro">Registrarse</a></li>
+                <li><a href={% url 'home' %}>Inicio</a></li>
+                <li><a href={% url 'generos' %}>Géneros</a></li>
+                <li><a href={% url 'estrenos' %}>Estrenos</a></li>
+                <li><a href={% url 'clasicos' %}>Clásicos</a></li>
+                <li><a href={% url 'contacto' %}>Contacto</a></li>
+                <li><a href={% url 'registro' %} class="registro">Registrarse</a></li>
+                <li><a href={% url 'login' %} class="login">Iniciar Sesión</a></li> 
             </ul>
         </nav>
         <nav class="menu-responsive">
             <ul>
-                    <li><a href={% url 'home' %}>Inicio</a></li>
-                    <li><a href={% url 'generos' %}>Géneros</a></li>
-                    <li><a href={% url 'estrenos' %}>Estrenos</a></li>
-                    <li><a href={% url 'clasicos' %}>Clásicos</a></li>
-                    <li><a href={% url 'contacto' %}>Contacto</a></li>
-                    <li><a href={% url 'registro' %} class="registro">Registrarse</a></li>
+                <li><a href={% url 'home' %}>Inicio</a></li>
+                <li><a href={% url 'generos' %}>Géneros</a></li>
+                <li><a href={% url 'estrenos' %}>Estrenos</a></li>
+                <li><a href={% url 'clasicos' %}>Clásicos</a></li>
+                <li><a href={% url 'contacto' %}>Contacto</a></li>
+                <li><a href={% url 'registro' %} class="registro">Registrarse</a></li>
+                <li><a href={% url 'login' %} class="login">Iniciar Sesión</a></li> 
             </ul>
         </nav>
     </header>

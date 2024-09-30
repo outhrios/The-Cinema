@@ -5,12 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - The Cinema</title>
+    <title>Iniciar Sesión - The Cinema</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            height: 100vh; 
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -25,6 +28,19 @@
 
         .logo {
             height: 50px;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 3px 0;
         }
 
         nav {
@@ -60,19 +76,6 @@
 
         .registro:hover, .login:hover {
             background-color: #e55;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle div {
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin: 3px 0;
         }
 
         .menu-responsive {
@@ -113,76 +116,16 @@
             margin: 10px auto;
         }
 
-        .menu-toggle.active + .menu-responsive {
+        .menu-responsive.active {
             display: flex;
         }
 
         main {
+            flex: 1;
             display: flex;
-            justify-content: center;
             align-items: center;
-            min-height: 75vh; 
-            padding: 20px;
+            justify-content: center;
             background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin: 20px auto;
-            max-width: 1000px;
-        }
-
-        .carrusel {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            overflow: hidden;
-            margin: auto;
-        }
-
-        .carrusel .slides {
-            display: flex;
-            width: 100%;
-            height: auto;
-            transition: transform 0.5s ease;
-        }
-
-        .carrusel .slide {
-            min-width: 100%;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carrusel img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            display: block;
-        }
-
-        .carrusel .prev, .carrusel .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            transition: 0.6s ease;
-            border-radius: 3px;
-            user-select: none;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .carrusel .next {
-            right: 0;
-        }
-
-        .carrusel .prev:hover, .carrusel .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
         }
 
         footer {
@@ -190,6 +133,48 @@
             padding: 10px;
             background: #333;
             color: #fff;
+        }
+
+        .login-form {
+            width: 100%; 
+            max-width: 400px; 
+            padding: 20px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; 
+            background: #f9f9f9;
+        }
+
+        .login-form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .login-form button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #555;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
         }
 
         @media only screen and (max-width: 600px) {
@@ -200,20 +185,10 @@
             .menu-toggle {
                 display: flex;
             }
-
-            .carrusel {
-                width: 100%;
-                height: 40vh;
-            }
-
-            .carrusel .prev, .carrusel .next {
-                font-size: 18px;
-                padding: 12px;
-            }
         }
     </style>
 </head>
-<body class="index-page">
+<body>
     <header>
         <img src={% static 'myapp/images/index/logo.png' %} alt="The Cinema" class="logo">
         <div class="menu-toggle" onclick="toggleMenu()">
@@ -221,7 +196,7 @@
             <div></div>
             <div></div>
         </div>
-        <nav class="menu-responsive">
+        <nav class="menu">
             <ul>
                 <li><a href={% url 'home' %}>Inicio</a></li>
                 <li><a href={% url 'generos' %}>Géneros</a></li>
@@ -232,7 +207,7 @@
                 <li><a href={% url 'login' %} class="login">Iniciar Sesión</a></li>
             </ul>
         </nav>
-        <nav class="menu">
+        <nav class="menu-responsive">
             <ul>
                 <li><a href={% url 'home' %}>Inicio</a></li>
                 <li><a href={% url 'generos' %}>Géneros</a></li>
@@ -245,20 +220,20 @@
         </nav>
     </header>
     <main>
-        <div class="carrusel">
-            <div class="slides">
-                <div class="slide">
-                    <img src={% static 'myapp/images/index/imagen1.png' %} alt="Imagen 1">
-                </div>
-                <div class="slide">
-                    <img src={% static 'myapp/images/index/imagen2.jpg' %} alt="Imagen 2">
-                </div>
-                <div class="slide">
-                    <img src={% static 'myapp/images/index/imagen3.jpg' %} alt="Imagen 3">
-                </div>
-            </div>
-            <a class="prev" onclick="cambiarSlide(-1)">&#10094;</a>
-            <a class="next" onclick="cambiarSlide(1)">&#10095;</a>
+        <div class="login-form">
+            <h1>Iniciar Sesión</h1>
+            <form id="loginForm">
+                <label for="usuario">Nombre de Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Iniciar Sesión</button>
+                <button type="reset" class="clear">Limpiar</button>
+            </form>
+
+            <div id="errorMessages" class="error"></div>
         </div>
     </main>
     <footer>
@@ -266,30 +241,16 @@
     </footer>
 
     <script>
-        let slideIndex = 0;
-        mostrarSlide();
-
-        function cambiarSlide(n) {
-            mostrarSlide(slideIndex += n);
-        }
-
-        function mostrarSlide(n) {
-            let i;
-            let slides = document.getElementsByClassName("slide");
-            if (n >= slides.length) { slideIndex = 0; }
-            if (n < 0) { slideIndex = slides.length - 1; }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex].style.display = "flex";
-        }
-
         function toggleMenu() {
-            const menuToggle = document.querySelector('.menu-toggle');
             const menuResponsive = document.querySelector('.menu-responsive');
-            menuToggle.classList.toggle('active');
             menuResponsive.classList.toggle('active');
         }
+
+        document.querySelectorAll('.menu-responsive a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.menu-responsive').classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>

@@ -29,3 +29,6 @@ def generos(request):
 def registro(request):
     return render(request, 'myapp/registro.html')
 
+def login(request):
+    return render(request, 'myapp/login.html')
+
